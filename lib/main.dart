@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:provider_mix/providers/indice_principal_provider.dart';
 import 'package:provider_mix/screens/home_page.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(ChangeNotifierProvider(
+    create: (context) => IndicePrincipalProvider(),
+    child: MainApp(),
+  ));
 }
 
 class MainApp extends StatelessWidget {

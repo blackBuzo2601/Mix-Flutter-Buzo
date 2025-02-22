@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:provider_mix/providers/indice_principal_provider.dart';
 import 'package:provider_mix/screens/pantalla_dos.dart';
 import 'package:provider_mix/screens/pantalla_tres.dart';
 import 'package:provider_mix/screens/pantalla_uno.dart';
@@ -14,25 +16,27 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          leading: Icon(Icons.movie_filter_outlined),
-          title: Text("Menú Principal "),
-          centerTitle: true,
-        ),
-        body: _IndiceSeleccionado(),
-        bottomNavigationBar: CustomBottomNavBar());
+    return Consumer<IndicePrincipalProvider>(
+        builder: (context, value, child) => Scaffold(
+            appBar: AppBar(
+              leading: Icon(Icons.movie_filter_outlined),
+              title: Text("Menú Principal "),
+              centerTitle: true,
+            ),
+            body: _IndiceSeleccionado(
+              instancia: value,
+            ),
+            bottomNavigationBar: CustomBottomNavBar()));
   }
 }
 
 class _IndiceSeleccionado extends StatelessWidget {
-  const _IndiceSeleccionado({super.key});
+  IndicePrincipalProvider instancia;
+  _IndiceSeleccionado({required this.instancia, super.key});
 
   @override
   Widget build(BuildContext context) {
-    int indice = 0;
-
-    switch (indice) {
+    switch (instancia.indicePrincipal) {
       case 0:
         return PantallaUno();
       case 1:

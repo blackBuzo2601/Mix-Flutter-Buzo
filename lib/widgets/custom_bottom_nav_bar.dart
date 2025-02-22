@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:provider_mix/providers/indice_principal_provider.dart';
 import 'package:provider_mix/widgets/single_bottom_item.dart';
 
 class CustomBottomNavBar extends StatefulWidget {
@@ -11,32 +13,37 @@ class CustomBottomNavBar extends StatefulWidget {
 class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
     //dispositivo base
     //411px ancho
     //820px largo
 
-    return BottomNavigationBar(
-      items: [
-        BottomNavigationBarItem(
-            label: "Videojuegos",
+    return Consumer<IndicePrincipalProvider>(
+      builder: (context, value, child) => BottomNavigationBar(
+        onTap: (tocado) {
+          //obtenemos la instancia de IndicePrincipalProvider para poder modificarlo despues
+          final indiceActual = context.read<IndicePrincipalProvider>();
+          indiceActual.actualizarIndice(tocado);
+        },
+        items: [
+          BottomNavigationBarItem(
+              label: "Videojuegos",
+              icon: SingleBottomItem(
+                rutaIcono: "assets/juegos.png",
+              )),
+          BottomNavigationBarItem(
+            label: "Películas",
             icon: SingleBottomItem(
-              rutaIcono: "assets/juegos.png",
-            )),
-        BottomNavigationBarItem(
-          label: "Películas",
-          icon: SingleBottomItem(
-            rutaIcono: "assets/peliculas.png",
+              rutaIcono: "assets/peliculas.png",
+            ),
           ),
-        ),
-        BottomNavigationBarItem(
-          label: "Series",
-          icon: SingleBottomItem(
-            rutaIcono: "assets/series.png",
-          ),
-        )
-      ],
+          BottomNavigationBarItem(
+            label: "Series",
+            icon: SingleBottomItem(
+              rutaIcono: "assets/series.png",
+            ),
+          )
+        ],
+      ),
     );
   }
 }
