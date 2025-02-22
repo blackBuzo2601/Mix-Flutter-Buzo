@@ -13,10 +13,6 @@ class CustomBottomNavBar extends StatefulWidget {
 class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
   @override
   Widget build(BuildContext context) {
-    //dispositivo base
-    //411px ancho
-    //820px largo
-
     return Consumer<IndicePrincipalProvider>(
       builder: (context, value, child) => BottomNavigationBar(
         onTap: (tocado) {
