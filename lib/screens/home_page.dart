@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider_mix/screens/pantalla_uno.dart';
 import 'package:provider_mix/widgets/custom_bottom_nav_bar.dart';
 
 class HomePage extends StatelessWidget {
@@ -12,11 +13,7 @@ class HomePage extends StatelessWidget {
         title: Text("Menú Principal "),
         centerTitle: true,
       ),
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        color: Colors.orange,
-      ),
+      body: PantallaUno(),
       bottomNavigationBar: CustomBottomNavBar(),
     );
   }
